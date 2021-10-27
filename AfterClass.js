@@ -1,45 +1,33 @@
-class Estudiante{
-    constructor(nombre,apellido,correo,desafios,profesor){
-        this.nombre= nombre;
-        this.apellido=apellido;
-        this.correo=correo;
-        this.desafios=desafios;
-        this.profesor=profesor;
+class Usuario {
+
+    constructor(nombre, apellido, libros, mascotas) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.libros = libros;
+        this.mascotas = mascotas;
     }
-    //métodos
-    getFullName(){
-        return `${this.nombre} ${this.apellido}`
-    }
-    obtenerDesafios(){
-        return this.desafios;
-    }
-    agregarDesafio(desafio){
-        this.desafios.push(desafio);
-    }
-    aprobarDesafio(id){
-        this.desafios.forEach(desafio=>{
-            if(desafio.id===id){
-                desafio.status="aprobado";
-            }
-        })
-    }
+
+    getFullName () {
+        return `${this.nombre} ${this.apellido}`; }
+
+    addBook () {
+        let libro = {nombre: nombre, autor:autor};
+        this.libros.push(libro); }
+
+    getBooks() {
+        return this.libros.map(libro => libro.nombre); }
+
+    addMascotas() {
+        this.mascotas.push(mascota); }
+
+    getMascotas() {
+        return this.mascotas.length; }
 }
 
-let estudiante1 = new Estudiante('Mauricio','Espinosa','correo@correo.com',[],{nombre:"Juan",apellido:"Escutia"});
-let desafio ={
-    id:1,
-    nombre:"Desafio 1",
-    descripcion:"desafio sobre clases de javascript",
-    status:"pendiente",
-}
-estudiante1.agregarDesafio(desafio);
+let lucas = new Usuario ('Albert', 'Einstein', [{nombre: 'Diario del ladrón', autor: 'Jean Genet'}, {nombre: 'Miedo y asco en Las Vegas', autor: 'Hunter S. Thompson'}],['Firulais','Michi']);
 
-estudiante1.agregarDesafio({
-    id:2,
-    nombre:"Desafio 2",
-    descripcion:"Desafio sobre archivos de javascript",
-    status:"pendiente",
-})
+console.log(lucas.getFullName());
 
-estudiante1.aprobarDesafio(2);
-console.log(estudiante1);
+console.log(lucas.getBooks());
+
+console.log(lucas.getMascotas());
