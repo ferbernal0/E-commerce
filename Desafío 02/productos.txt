@@ -1,0 +1,16 @@
+[
+  [
+    {
+      "id": "001",
+      "title": "Arroz",
+      "price": 65,
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_747573-MLA45406474491_032021-O.jpg"
+    },
+    {
+      "id": "002",
+      "title": "Fideos",
+      "price": 60,
+      "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_737740-MLA42885425190_072020-O.jpg"
+    }
+  ]
+]
