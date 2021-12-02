@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Arroz",
+    "price": "65,50",
+    "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_747573-MLA45406474491_032021-O.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Fideos",
+    "price": "60",
+    "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_737740-MLA42885425190_072020-O.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Puré de tomate",
+    "price": "59,99",
+    "thumbnail": "https://walmartar.vteximg.com.br/arquivos/ids/864477-1000-1000/Pure-De-Tomate-Arcor-520-Gr-1-14233.jpg"
+  },
+  {
+    "id": 4,
+    "title": "Leche",
+    "price": "122",
+    "thumbnail": "https://walmartar.vteximg.com.br/arquivos/ids/897606-1000-1000/Leche-Parcialmente-Descremada-Liviana-La-Serenisima-Larga-Vida-1l-1-479725.jpg"
+  }
+]
