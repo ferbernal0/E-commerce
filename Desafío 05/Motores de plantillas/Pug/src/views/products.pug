@@ -1,0 +1,41 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  // <link rel="stylesheet" href="styles.css">
+  link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' integrity='sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3' crossorigin='anonymous')
+  title Desafios CoderHouse
+.main-container
+  .form-container
+    h1.title Registro de Productos
+    form#prodForm.form(name='prodForm')
+      .form-floating.form-input
+        input#name.form-control(name='name' placeholder='name' required='')
+        label(for='name') Title
+      .form-floating.form-input
+        select#title.form-select(name='title')
+          option(value='shampoo' label='Shampoo' selected='')
+          option(value='crema' label='Crema')
+          option(value='gel' label='Gel')
+          option(value='acondicionador' label='Acondicionador')
+        label(for='title') Tipo
+      .form-floating.form-input
+        input#price.form-control(name='price' placeholder='price' required='')
+        label(for='price') Price
+      .form-floating.form-input
+        input#thumbnail.form-control(type='file' accept='image/*' name='thumbnail')
+        label(for='thumbnail') Image
+      div(style='display:flex')
+        div
+          img#preview
+        div(style='width:100%; padding-top:100px')
+          p.image-text Subir la imagen del Producto.
+      div(style='margin-top:30px; display:flex; justify-content: center;')
+        input.btn.btn-dark(type='submit')
+      input.btn.btn-primary(type='button' onclick="location.href='/view/list'" value='Ver Productos')
+script(src='../index.js') 
+script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js' integrity='sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13' crossorigin='anonymous')
+script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js' integrity='sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p' crossorigin='anonymous')
+script(src='https://code.jquery.com/jquery-3.6.0.min.js' integrity='sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=' crossorigin='anonymous')
+script(src='//cdn.jsdelivr.net/npm/sweetalert2@11')

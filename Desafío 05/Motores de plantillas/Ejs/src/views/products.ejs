@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%-include('./partials/head.ejs')%>
+<body>
+<div class="container" style="padding: 2rem;">
+    <div class="row">
+        <div class="col-sm-12">
+            <div style="display:flex; align-items: center; justify-content:space-between;">
+                <h1>Lista de Productos</h1>
+                <input class="btn btn-dark" type="button" onclick="location.href='/'" value="Subir Producto" />
+            </div>
+            <div class="mt-5" style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+                <% for(product of products) { %>
+                <div style="padding: 1rem;">
+                    <div class="card" style="width: 15rem;">
+                        <img src=<%=product.thumbnail%> class="card-img-top" alt=<%=product.thumbnail%>>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <%= product.title %>
+                            </h5>
+                            <p class="card-text">$<%= product.price %>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<%-include('./partials/footer.ejs')%>
+</html>
+
