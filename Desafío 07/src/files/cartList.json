@@ -1,12 +1,24 @@
 [
   {
     "id": 1,
-    "timestamp": "2021-12-07T04:05:52.529Z",
-    "products": []
-    },
+    "timestamp": "2021-12-15T23:16:53.812Z",
+    "products": [
+      3
+    ]
+  },
   {
     "id": 2,
-    "timestamp": "2021-12-07T04:05:52.529Z",
-    "products": []
+    "timestamp": "2021-12-16T10:21:14.159Z",
+    "products": [
+      2,
+      3
+    ]
+  },
+  {
+    "id": 3,
+    "timestamp": "2021-12-16T10:27:41.955Z",
+    "products": [
+      1
+    ]
   }
 ]

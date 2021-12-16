@@ -11,22 +11,22 @@
   },
   {
     "id": 2,
-    "timestamp": "2021-12-09T11:23:40.365Z",
-    "title": "POST producto nuevo",
-    "description": "Paquete de Arroz Luccetti de 500gr",
-    "code": "123321",
-    "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_747573-MLA45406474491_032021-O.jpg",
-    "price": "65",
-    "stock": "10"
+    "timestamp": "2021-12-15T11:23:40.365Z",
+    "title": "Fideos",
+    "description": "Paquete de Fideos Luccetti de 500gr",
+    "code": "321123",
+    "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_737740-MLA42885425190_072020-O.jpg",
+    "price": "60",
+    "stock": "8"
   },
   {
     "id": 3,
-    "timestamp": "2021-12-09T12:33:21.654Z",
-    "title": "POST producto nuevo",
-    "description": "Paquete de Arroz Luccetti de 500gr",
-    "code": "123321",
-    "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_747573-MLA45406474491_032021-O.jpg",
-    "price": "65",
-    "stock": "10"
+    "timestamp": "2021-12-15T12:33:21.654Z",
+    "title": "Puré de tomate",
+    "description": " Caja de Puré de tomate Arcor de 520gr",
+    "code": "213321",
+    "thumbnail": "https://walmartar.vteximg.com.br/arquivos/ids/864477-1000-1000/Pure-De-Tomate-Arcor-520-Gr-1-14233.jpg",
+    "price": "55",
+    "stock": "8"
   }
 ]

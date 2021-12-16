@@ -40,7 +40,7 @@ class Cart{
             }    
             try {
                 await fs.promises.writeFile(this.fileName,JSON.stringify([cart]),null,2) 
-                return {status:"success",message:"carrito creado",id:cart.id}
+                return {status:"success",message:"Carrito creado",id:cart.id}
             }catch(err){
                 return {status:"error",message:"No se pudo crear el archivo"}
             }
@@ -52,62 +52,80 @@ class Cart{
         try{            
             let data = await fs.promises.readFile(this.fileName,'utf-8');            
             let cartProducts = JSON.parse(data);            
-            let prod = cartProducts.find(prod=>prod.id===numberId);            
-            if (prod){
-                return {status:"success",data:prod}
+            let prod = cartProducts.find(prod=>prod.id===numberId);                      
+            if (prod){                
+                if(prod.products.length>0){
+                    return {status:"success",data:prod.products}
+                }else{
+                    return {status:"error",message:"El carrito aún no tiene productos"}               
+                }                   
             }else{
-                return {status:"error",message:"Producto no encontrado"}           
+                return {status:"error",message:"No existe un carrito con el id elegido"}           
             }            
         }catch(err){
             return {status:"error",message:err}
         }
     }
-
-    //muestra todos los carritos y sus productos
-    async getAllCart(){
+    //agrega un producto (solo id) al carrito elegido
+    async addProductToCart(cartId,productId){        
         try{
-            let data = await fs.promises.readFile(this.fileName,'utf-8');
-            let newCartArray = JSON.parse(data);            
-            if (newCartArray){
-                return {status:"success",data:newCartArray}
-            }else{
-                return {status:"error",message:"No se encontraron carritos de compra"}           
-            }            
+            let dataSaved = await fs.promises.readFile(this.fileName,'utf-8');
+            let newCartArray = JSON.parse(dataSaved); 
+            if(!newCartArray.some(cart=>cart.id===cartId)) {
+                return {status:"error", message:"No existe un carrito con el id elegido"}
+            }
+            let duplicate = newCartArray.find(cart=>cart.id===cartId);            
+            let productFind = duplicate.products.find(id=>id===productId);            
+            if (productFind) {
+                return {status:"error", message:"Producto ya agregado al carrito, no es posible añadirlo nuevamente "}
+            }         
+            let result = newCartArray.map(cart=>{                
+                if(cart.id===cartId){     
+                    let cartProduct = cart;                   
+                    cartProduct = Object.assign(cartProduct,{timestamp:cartProduct.timestamp,products:[...cartProduct.products,productId]});                    
+                    cartProduct = Object.assign({...cartProduct,id:cart.id});                   
+                    return cartProduct                    
+                }else{                                 
+                    return cart;
+                }
+            })
+            try{
+                await fs.promises.writeFile(this.fileName,JSON.stringify(result,null,2));
+                return {status:"success", message:"Producto agregado al carrito"}
+            }catch{
+                return {status:"error", message:"Fallo al agregar un producto al carrito"}
+            }
         }catch(err){
-            return {status:"error", message:err}
+            return {status:"error",message:"Fallo al agregar un producto al carrito"}
         }
     }
 
-
-    //INCOMPLETO
-    // async addProductToCart(id,cartProduct){        
-    //     try{
-    //         let data = await fs.promises.readFile(this.fileName,'utf-8');
-    //         let newCartArray = JSON.parse(data); 
-    //        // if(!newCartArray.some(cart=>cart.id===id)) return {status:"error", message:"No hay un producto con el id elegido"}
-    //         let result = [...newCartArray[0].products,cartProduct]
-            
-            
-    //         // let result = newCartArray[0].map(cart=>{                
-    //         //                 if(newCartArray.id===id){                     
-    //         //         console.log('encontre el producto')
-    //         //         // cartProduct = Object.assign(cartProduct,{products:[...cartProduct]})                    
-    //         //         // cartProduct = Object.assign({...cartProduct,id:product.id})                    
-    //         //         return cartProduct                    
-    //         //     }else{                   
-    //         //         return cart;
-    //         //     }
-    //         // })
-    //         try{
-    //             await fs.promises.writeFile(this.fileName,JSON.stringify(result,null,2));
-    //             return {status:"success", message:"Producto actualizado"}
-    //         }catch{
-    //             return {status:"error", message:"Error al actualizar el producto"}
-    //         }
-    //     }catch(err){
-    //         return {status:"error",message:"Fallo al agregar un producto al carrito"}
-    //     }
-    // }
+    //borra producto de un carrito
+    async delProductById(cartId,productId){
+        try{
+            let data = await fs.promises.readFile(this.fileName,'utf-8');
+            let carts = JSON.parse(data);            
+            let result = carts.map(cart=>{                
+                if(cart.id===cartId){                       
+                    let cartProduct = cart;                         
+                    let itemfind = cart.products.filter((p=>p!=productId));
+                    cartProduct = Object.assign(cartProduct,{timestamp:cartProduct.timestamp,products:itemfind});                    
+                    cartProduct = Object.assign({...cartProduct,id:cart.id});     
+                    return cartProduct                    
+                }else {
+                    return cart
+                }                                
+            })
+            try{               
+                await fs.promises.writeFile(this.fileName,JSON.stringify(result,null,2));
+                return {status:"success", message:"Producto eliminado del carrito"}
+            }catch{
+                return {status:"error", message:"Error al eliminar producto del carrito"}
+            }                  
+        }catch(err){
+            return {status:"error",message:err}
+        }
+    }
     
     //borra un carrito por su id
     async deleteCartbyId(numberId){
@@ -118,24 +136,14 @@ class Cart{
             if (cart){
                 let newCartUpdate = newCart.filter((p)=>p.id!=numberId)                           
                 await fs.promises.writeFile(this.fileName,JSON.stringify(newCartUpdate),null,2)                 
-                return {status:"success",message:"Se eliminó el carrito elegido"} 
+                return {status:"success",message:"Se eliminó correctamente el carrito elegido"} 
             }else{
-                return {status:"error",message:"No había carrito para eliminar"}           
+                return {status:"error",message:"No existe un carrito con el id elegigo"}           
             }         
         }catch(err){
             return {status:"error",message:err}
         }
-    }
-    
-    //borra todos los carritos
-    async deleteAll(){
-        try{
-            await fs.promises.writeFile(this.fileName,JSON.stringify(''),null,2);
-            return {status:"success",message:"Todos los carritos fueron eliminados"}         
-        }catch(err){
-            return {status:"error",message:err}
-        }
-    }
+    }       
 }
 
 export default Cart

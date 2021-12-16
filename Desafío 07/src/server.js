@@ -2,7 +2,7 @@ import express from 'express';
 import {engine} from 'express-handlebars';
 import cors from 'cors';
 import Conteiner from './classes/Conteiner.js';
-import Chats from './classes/chats.js';
+import Chats from './classes/Chats.js';
 import router from './routes/products.js';
 import cartRouter from './routes/cart.js'
 // import upload from './services/upload.js';
@@ -83,7 +83,7 @@ io.on('connection',async socket=>{
 })
 
 //Chats en pantalla-----------------------------------------
-let {chatsData} = await chats.getAllChats()
+let {chatsData} = chats.getAllChats()
 
 io.on('connection',async socket=>{    
     socket.emit('messagelog',chatsData)    
@@ -95,7 +95,7 @@ io.on('connection',async socket=>{
     })
 })
 
-app.get('*', function(req, res){
+app.use('/*', function(req, res){
     let error = {
         route:req.params[0],
         method:req.method,
