@@ -1,0 +1,30 @@
+
+<h1 class="display-2 text-center">Productos guardados</h1>
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+        <button class="btn btn-success mt-5" onclick="location.href='/'" value="carga de productos" >Volver a la carga de productos</button>       
+    </div>
+  </div>
+</div>
+{{#if products}}
+<div class="container justify-content-center align-item-center">
+    <div class="row justify-content-center">
+        {{#each products}}
+            <div class="card m-3 shadow p-3 bg-white rounded" style="max-width: 20rem;">
+                <img class="card-img-top mt-2 align-self-center" src="{{this.thumbnail}}" alt="Card image cap" style="max-width: 10rem;height:10rem">            
+                <div class="card-body">
+                    <h5 class="card-title text-center">{{this.title}}</h5>
+                    <p class="card-text">Descripción: {{this.description}}</p> 
+                    <p class="card-text">Product id: {{this.id}}</p>                            
+                     <p class="card-text">Product Code: {{this.code}}</p>
+                    <p class="card-text">Stock: {{this.stock}}</p>  
+                    <p class="card-text">Precio: ${{this.price}}</p>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>  
+{{else}}
+  <h2 class="text-center text-danger mt-5">No hay productos cargados</h2>
+{{/if}}
