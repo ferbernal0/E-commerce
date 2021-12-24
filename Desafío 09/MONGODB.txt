@@ -1,0 +1,86 @@
+1. INICIAR LA BASE DE DATOS
+mongod --dbpath "E:\Proyectos\Programación Backend\Nueva carpeta\Desafío 08".
+
+2. INICIAR MONGO GUI.
+mongo
+
+3. MOSTRAR LAS BASES DE DATOS.
+show dbs
+
+4. CREA LA BASE DE DATOS "ECOMMERCE".
+use ecommerce
+
+5. SE CREA LA COLECCION "MESSAGE" Y "PRODUCTS"
+db.creatCollection('message')
+db.creatCollection('products')
+
+6. SE AGREGAN 10 REGISTROS DE MENSAJES
+db.message.insertMany([
+  {email : 'prueba1@hotmail.com', texto: 'Hola', fechaHora: '24/10/2021 12:22:54'},
+  {email : 'prueba2@hotmail.com', texto: 'Hola, Bienvenido!', fechaHora: '24/10/2021 12:23:54'},
+  {email : 'prueba1@hotmail.com', texto: 'Como estas?', fechaHora: '24/10/2021 12:25:54'},
+  {email : 'prueba2@hotmail.com', texto: 'Todo bien, vos?', fechaHora: '24/10/2021 12:26:54'},
+  {email : 'prueba1@hotmail.com', texto: 'Todo bien por suerte!', fechaHora: '24/10/2021 12:28:54'},
+  {email : 'prueba2@hotmail.com', texto: 'Como te puedeo ayudar?', fechaHora: '24/10/2021 12:29:54'},
+  {email : 'prueba1@hotmail.com', texto: 'Estoy buscando un producto', fechaHora: '24/10/2021 12:31:54'},
+  {email : 'prueba2@hotmail.com', texto: 'Decime su nombre y lo analizaré', fechaHora: '24/10/2021 12:31:54'},
+  {email : 'prueba1@hotmail.com', texto: 'No recuerdo su nombre ahora', fechaHora: '24/10/2021 12:35:54'},
+  {email : 'prueba2@hotmail.com', texto: 'Cuando lo recuerdes, me lo dices', fechaHora: '24/10/2021 12:39:54'}
+])
+
+7. SE AGREGAN 10 REGISTROS DE PRODUCTOS
+db.products.insertMany([
+    {name: 'producto1', description: '-', code: 012, foto: '', price: 100, stock: 50, id: 1, timestamp: '6/11/2021 12:30:15'},
+    {name: 'producto2', description: '-', code: 013, foto: '', price: 500, stock: 150, id: 2, timestamp: '7/11/2021 12:30:15'},
+    {name: 'producto3', description: '-', code: 014, foto: '', price: 1000, stock: 450, id: 3, timestamp: '9/11/2021 12:30:15'},
+    {name: 'producto4', description: '-', code: 015, foto: '', price: 750, stock: 550, id: 4, timestamp: '10/11/2021 12:30:15'},
+    {name: 'producto5', description: '-', code: 016, foto: '', price: 1500, stock: 150, id: 5, timestamp: '13/11/2021 12:30:15'},
+    {name: 'producto6', description: '-', code: 017, foto: '', price: 2500, stock: 50, id: 6, timestamp: '1/11/2021 12:30:15'},
+    {name: 'producto7', description: '-', code: 018, foto: '', price: 3750, stock: 500, id: 7, timestamp: '2/11/2021 12:30:15'},
+    {name: 'producto8', description: '-', code: 019, foto: '', price: 560, stock: 750, id: 8, timestamp: '4/11/2021 12:30:15'},
+    {name: 'producto9', description: '-', code: 020, foto: '', price: 4050, stock: 150, id: 9, timestamp: '3/11/2021 12:30:15'},
+    {name: 'producto10', description: '-', code: 021, foto: '', price: 5000, stock: 250, id: 10, timestamp: '5/11/2021 12:30:15'}
+    ])
+
+8. LISTAR LOS DATOS
+db.message.find().pretty()
+db.products.find().pretty()
+
+9. MOSTRAR CANTIDAD DE ELEMENTOS
+db.message.count()
+db.products.count()
+
+10. AGREGAR UN PRODUCTO MÁS EN LA COLECCIÓN PRODUCTOS
+db.products.insert({name: 'producto11', description: '-', code: 022, foto: '', price: 200, stock: 150, id: 11, timestamp: '2/11/2021 12:30:15'})
+
+11. CONSULTA POR NOMBRE DE PRODUCTOS ESPECÍFICO
+A. MENOR A $1000
+db.products.find({price : {$lte : 1000}})
+
+B. ENTRE $1000 Y $3000
+db.products.find({$and : [{price : {$gte: 1000}}, {price : {$lte: 3000}}]})
+
+C. MAYOR A $3000
+db.products.find({price : {$gte : 3000}})
+
+D. TERCERO MÁS BARATO
+db.products.find({},{name:1, _id: 0}).sort({price:1})[2]
+
+12. ACTUALIZAR EL CAMPO STOCK A 100.
+db.products.updateMany({},{ $set: {stock: 100}})
+
+13. ACTUALIZAR EL STOCK A 0 DE MAYORES DE $4000
+db.products.updateMany({price : {$gte : 4000}},{ $set: {stock: 0}})
+
+14. BORAR PRODUCTOS MENORES A $1000
+db.products.deleteMany({price : {$lte : 1000}})
+
+15. CREAR USUARIO
+use admin
+db.createUser({
+  user : 'pepe',
+  pwd : 'asd456',
+  roles : [
+    {role : 'read', db : 'ecommerce'}
+  ]
+})
