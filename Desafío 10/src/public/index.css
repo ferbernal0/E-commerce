@@ -1,0 +1,34 @@
+/*Estilos principales*/
+h1 {  
+  font-family: "Reggae One", cursive;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  letter-spacing: normal;
+  word-spacing: 2px; }
+
+/* Estilos del botón de scroll */
+.boton-scroll {
+  position: fixed;
+  bottom: 2vh;
+  right: 1vw;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 40%;
+  font-size: 2rem;
+  font-weight: bold;
+  background-color: black;
+  color: white;
+  outline: 0;
+  border: 0;
+  cursor: none;
+  transition: all 0.5s ease-out; }
+  
+.boton-scroll:hover {
+  background-color: white;
+  color: black; }  
+  
+.hidden {
+  opacity: 0;
+  visibility: none; 
+  display: none;}
+
