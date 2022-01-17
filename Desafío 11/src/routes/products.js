@@ -3,13 +3,21 @@ import __dirname from '../utils.js';
 import {io} from '../server.js'
 import { authMiddleware } from '../utils.js';
 import {products,persistence} from '../daos/index.js'
+import { generate_dataProducts } from '../utils.js';
 
 const router = express.Router();
 
+
+router.get('/products-test',(req,res)=>{
+    let test_products = generate_dataProducts()
+    res.send(test_products)
+})
+
 //GET para buscar todos los productos
 router.get('/',async (req,res)=>{    
-    let {data,message} = await products.getAll();//obtengo los productos del carrito    
-    if (data) {//si existen datos los envio
+    let {data,message} = await products.getAll();//obtengo los productos del carrito      
+    //PONER FILTRO DE ARRAY VACIO!!!!!!!
+    if (data) {//si existen datos los envio, 
         res.send(data);
     } else {//si no existen datos para mostrar, entonces se envia el mensaje de error
        res.status(404).send({error:message});
@@ -32,7 +40,7 @@ router.get('/:id',async (req,res)=>{
 //POST para guardar un producto y luego visualizar el id asignado
 router.post('/',authMiddleware,async (req,res)=>{            
     let product_to_add = req.body;//obtengo los datos del producto que quiero agregar    
-    let result = await products.save(product_to_add);//intento grabar el producto 
+    let result = await products.save(product_to_add);//intento grabar el producto     
     res.send(result);//este resultado puede ser success o error      
     if (result.status==="success"){ //si el resultado fue success es porque se pudo grabar el producto, hago un emit       
             products.getAll().then(result=>{            
@@ -48,7 +56,7 @@ router.put('/:id',authMiddleware,async (req,res)=>{
         product_to_update= parseInt(product_to_update);//parseo el id
     }    
     let product = req.body;//obtengo todo el producto completo que quiero modificar
-    let result = await products.updateProduct(product_to_update,product);//intento modificar el producto, luego me dará un resultado   
+    let result = await products.updateById(product_to_update,product);//intento modificar el producto, luego me dará un resultado   
     res.send(result) //el resultado podrá ser success o error             
 })
 
@@ -58,7 +66,7 @@ router.delete('/:id',authMiddleware,async (req,res)=>{
     if (persistence=='fileSystem'){
         product_to_delete= parseInt(product_to_delete)//parse para el caso de filesystem
     }    
-    let result = await products.deletebyId(product_to_delete); //intento borrar el producto por su id
+    let result = await products.deleteById(product_to_delete); //intento borrar el producto por su id
     res.send(result)//envio los resultados, sean success o error    
 })
 

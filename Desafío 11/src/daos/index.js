@@ -1,5 +1,6 @@
 let products;
 let carts;
+let chats;
 let persistence = 'mongo';
 
 switch(persistence){
@@ -11,9 +12,11 @@ switch(persistence){
         break;
     case "mongo":
         const{default:ProductsMongo} = await import ('./products/productsMongo.js');
-        const{default:CartsMongo} = await import ('./carts/cartsMongo.js');
+        const{default:CartsMongo} = await import ('./carts/cartsMongo.js');        
+        const{default:ChatsMongo} = await import ('./chats/chatsMongo.js')
         products = new ProductsMongo();
-        carts = new CartsMongo(); 
+        carts = new CartsMongo();         
+        chats = new ChatsMongo();
         break;
     case "fb":
         const{default:ProductsFb} = await import ('./products/productsFb.js');
@@ -23,4 +26,4 @@ switch(persistence){
         break;
     default:
 
-}export {products,carts,persistence}
+}export {products,carts,chats,persistence}
