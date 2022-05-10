@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+    <%- include('../partials/head'); %>
+    </head>
+    <body style="margin: 20px 150px">
+    <header><%- include('../partials/header'); %></header>
+
+    <main>
+        <p> </p>
+        <p class="h2">Ingrese Producto</p>
+        <p> </p>
+        <form action="/productos" method="POST">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Nombre del Producto</label>
+                <input name= "nombre" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese el Nombre del Producto">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Precio</label>
+                <input name= "precio" type="number" class="form-control" id="exampleInputEmail1" placeholder="Precio en U$D">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Link de la Imagen</label>
+                <input name= "foto" type="url" class="form-control" id="exampleInputEmail1" placeholder="Ingrese el URL completo">
+            </div>
+            <p> </p>
+            <button type="submit" class="btn btn-primary">Ingresar</button>
+            </form>
+
+            <p class="h2">Vista de Productos</p>
+
+<% if(productos == undefined ||productos.length === 0){ %>
+    <div class="p-3 mb-2 bg-warning text-dark">No se Encontraron Productos</div>
+
+<% } else{ %>  
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Precio</th>
+      <th scope="col">Foto</th>
+    </tr>
+  </thead>
+    <tbody>
+      <% productos.forEach(function(producto) { %>
+        <tr>
+          <td>
+            <%= producto.nombre %>
+          </td>
+          <td>
+            <%= producto.precio %>
+          </td>
+          <td>
+            <img src="<%= producto.foto %>" alt="" width="50" height="50"> 
+          </td>
+        </tr>
+        <% }); %>
+  </tbody>
+  </table>
+<% } %>
+<p> </p>
+
+    </main>
+    <footer><%- include('../partials/footer'); %></footer>
+    </body>
+</html>

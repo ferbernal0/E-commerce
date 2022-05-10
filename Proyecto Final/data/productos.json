@@ -1,0 +1,38 @@
+[
+  {
+    "nombre": "Casco Moderno",
+    "precio": 22,
+    "foto": "https://cdn3.iconfinder.com/data/icons/bicycle-11/64/helmet-bike-sports-competition-bicycle-256.png",
+    "id": 1
+  },
+  {
+    "nombre": "Casco de BMX",
+    "precio": 33,
+    "foto": "https://cdn0.iconfinder.com/data/icons/bicycle-parts-components-and-accessories/1772/Bicycle_Helmet___Bicycle_Bike_Helmet_Equipment_Protect-256.png",
+    "id": 1
+  },
+  {
+    "nombre": "Casco Clásico",
+    "precio": "100",
+    "foto": "https://cdn0.iconfinder.com/data/icons/sports-equipment-colored/512/bike_helmet-256.png",
+    "id": 3
+  },
+  {
+    "nombre": "Rueda Rodado 26",
+    "precio": "200",
+    "foto": "https://cdn3.iconfinder.com/data/icons/bicycle-part/32/Bicycle_part_spoke_wheel-256.png",
+    "id": 4
+  },
+  {
+    "nombre": "Medias de Competencia",
+    "precio": "3",
+    "foto": "https://cdn1.iconfinder.com/data/icons/bicycle-apparel/1772/Craft_Cool_Bike_Socks_Cycling_Socks-256.png",
+    "id": 5
+  },
+  {
+    "nombre": "Rueda 26 New with .put",
+    "precio": "5",
+    "foto": "https://contents.mediadecathlon.com/p1333/k$3a115af4670642212ca83006afe2ea23/sq/rueda-bicicleta-mtb-26-delantera-v-brake-pared-simple-negra.jpg?format=auto&f=640x640",
+    "id": 6
+  }
+]

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+    <%- include('../partials/head'); %>
+    </head>
+    <body style="margin: 20px 150px">
+    <header><%- include('../partials/header'); %></header>
+
+    <main>
+
+        <div class="container mt-3">
+            <h1 class="alert alert-success">
+                Bienvenido, <%= nombre %>
+                    <button class="btn btn-warning float-right mt-2" onclick="location.href='/logout'">
+                        Desloguear
+                    </button>
+            </h1>
+        </div>
+        <form id="form" action="/login" method="post" autocomplete="eff">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Nombre del Producto</label>
+                <input name= "nombre" type="text" class="form-control" id="nombre" aria-describedby="emailHelp" placeholder="Ingrese el Nombre del Producto">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Precio</label>
+                <input name= "precio" type="number" class="form-control" id="precio" placeholder="Precio en U$D">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Link de la Imagen</label>
+                <input name= "foto" type="url" class="form-control" id="foto" placeholder="Ingrese el URL completo">
+            </div>
+            <p> </p>
+            <button type="submit" class="btn btn-primary">Ingresar</button>
+            </form>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Foto</th>
+                </tr>
+            </thead>
+            <tbody id="real-time-products">
+            
+            </tbody>
+        </table>
+        
+        <div id="messages"></div>
+    <hr/>
+    <form id="chat_form" >
+        <p class= "h2">Centro de Mensajes</p>
+        <input type="text" id="username" placeholder="Ingrese su E-Mail" type= "email" required>
+        <div id="lista_mensaje_final"></div>
+        <input type="text" id="texto" placeholder="Escriba aquí su mensaje">
+        <input type="submit" value="Enviar">
+    </form>
+
+    </main>
+    <footer><%- include('../partials/footer'); %></footer>
+    </body>
+</html>

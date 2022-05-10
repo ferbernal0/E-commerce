@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>2 Bike or Not 2 Bike</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+
+</head>
+<body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand">2 Bike or Not 2 Bike</a>
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+        <a class="nav-link" href="/list-productos">Productos</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="/about">Sobre Nosotros</a>
+        </li>
+            <li class="nav-item">
+        <a class="nav-link" href="/login">Login</a>
+        </li>
+    </ul>
+    </nav>
+    <div>
+            <p> </p>
+        <p class="h2">Login de Usuarios</p>
+        <p> </p>
+        <form id="form" action="auth/local" method="post" autocomplete="eff">
+            <div class="form-group">
+
+                <label for="exampleInputEmail1">Ingrese su E-Mail</label>
+                <input name= "username" placeholder="Email" type="text" class="form-control" id="nombre" aria-describedby="emailHelp">
+                
+                <label for="exampleInputEmail1">Ingrese su Contraseña</label>
+                <input name= "password" placeholder="Contraseña" type="text" class="form-control" id="nombre" aria-describedby="emailHelp">
+                
+                <button class="btn btn-success mt-3" type="submit" value="Login" onclick="location.href='/aut/login'">Ingresar</button>
+                
+            </div>
+        </form>
+            <button class="btn btn-success mt-3" type="submit" value="singup" onclick="location.href='/singup'" >Registrarse</button>
+    </div>
+</body>
+</html>
